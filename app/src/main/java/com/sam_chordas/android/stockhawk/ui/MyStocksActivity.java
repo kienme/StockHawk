@@ -19,6 +19,8 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewTreeObserver;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.sam_chordas.android.stockhawk.R;
@@ -34,6 +36,8 @@ import com.google.android.gms.gcm.PeriodicTask;
 import com.google.android.gms.gcm.Task;
 import com.melnykov.fab.FloatingActionButton;
 import com.sam_chordas.android.stockhawk.touch_helper.SimpleItemTouchHelperCallback;
+
+import org.w3c.dom.Text;
 
 public class MyStocksActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
 
@@ -66,16 +70,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
         setContentView(R.layout.activity_my_stocks);
         // The intent service is for executing immediate pulls from the Yahoo API
         // GCMTaskService can only schedule tasks, they cannot execute immediately
-        mServiceIntent = new Intent(this, StockIntentService.class);
-        if (savedInstanceState == null){
-            // Run the initialize task service so that some stocks appear upon an empty database
-            mServiceIntent.putExtra("tag", "init");
-            if (isConnected){
-                startService(mServiceIntent);
-            } else{
-                networkToast();
-            }
-        }
+
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         getLoaderManager().initLoader(CURSOR_LOADER_ID, null, this);
@@ -91,6 +86,17 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
                 }));
         recyclerView.setAdapter(mCursorAdapter);
 
+        recyclerView.setLayoutManager(new LinearLayoutManager(mContext) {
+            @Override
+            public void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
+                super.onLayoutChildren(recycler, state);
+
+                TextView emptyText = (TextView) findViewById(R.id.empty_screen);
+
+                if( findFirstVisibleItemPosition() != -1)
+                    emptyText.setVisibility(View.GONE);
+            }
+        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.attachToRecyclerView(recyclerView);
@@ -130,6 +136,17 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
 
             }
         });
+
+        mServiceIntent = new Intent(this, StockIntentService.class);
+        if (savedInstanceState == null){
+            // Run the initialize task service so that some stocks appear upon an empty database
+            mServiceIntent.putExtra("tag", "init");
+            if (isConnected){
+                startService(mServiceIntent);
+            } else{
+                networkToast();
+            }
+        }
 
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mCursorAdapter);
         mItemTouchHelper = new ItemTouchHelper(callback);
@@ -233,5 +250,4 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
                 .putExtra(Intent.EXTRA_TEXT, mCursor.getString(symIndex));
         startActivity(intent);
     }
-
 }
