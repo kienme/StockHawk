@@ -86,6 +86,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
                     @Override public void onItemClick(View v, int position) {
                         //TODO:
                         // do something on item click
+                        startDetailActivity(position);
                     }
                 }));
         recyclerView.setAdapter(mCursorAdapter);
@@ -117,7 +118,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
                                     else {
                                         // Add the stock to DB
                                         mServiceIntent.putExtra("tag", "add");
-                                        mServiceIntent.putExtra("symbol", input.toString());
+                                        mServiceIntent.putExtra("symbol", input.toString().toUpperCase());
                                         startService(mServiceIntent);
                                     }
                                 }
@@ -222,6 +223,15 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
     @Override
     public void onLoaderReset(Loader<Cursor> loader){
         mCursorAdapter.swapCursor(null);
+    }
+
+    private void startDetailActivity(int position) {
+        mCursor = mCursorAdapter.getCursor();
+        mCursor.moveToPosition(position);
+        int symIndex = mCursor.getColumnIndex(QuoteColumns.SYMBOL);
+        Intent intent = new Intent(getApplicationContext(), DetailActivity.class)
+                .putExtra(Intent.EXTRA_TEXT, mCursor.getString(symIndex));
+        startActivity(intent);
     }
 
 }

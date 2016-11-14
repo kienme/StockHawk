@@ -4,7 +4,12 @@ import android.content.ContentProviderOperation;
 import android.util.Log;
 import com.sam_chordas.android.stockhawk.data.QuoteColumns;
 import com.sam_chordas.android.stockhawk.data.QuoteProvider;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -48,6 +53,11 @@ public class Utils {
         return batchOperations;
     }
 
+    public static String buildStockHistoryQuery(String symbol, String startDate, String endDate){
+        return "select * from yahoo.finance.historicaldata where symbol = \'" +
+                symbol + "\' and startDate = \'" + startDate + "\' and endDate = \'" + endDate + "\'";
+    }
+
     public static String truncateBidPrice(String bidPrice){
 
         if(bidPrice == null)
@@ -74,6 +84,13 @@ public class Utils {
         return change;
     }
 
+    public static String getDate(int daysAgo){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DATE, -daysAgo);
+        return dateFormat.format(calendar.getTime());
+    }
+
     public static ContentProviderOperation buildBatchOperation(JSONObject jsonObject){
         ContentProviderOperation.Builder builder = ContentProviderOperation.newInsert(
                 QuoteProvider.Quotes.CONTENT_URI);
@@ -81,7 +98,7 @@ public class Utils {
             if (jsonObject.getString("Name").equals("null"))
                 return null;
             String change = jsonObject.getString("Change");
-            builder.withValue(QuoteColumns.SYMBOL, jsonObject.getString("symbol"));
+            builder.withValue(QuoteColumns.SYMBOL, jsonObject.getString("symbol").toUpperCase());
             builder.withValue(QuoteColumns.BIDPRICE, truncateBidPrice(jsonObject.getString("Bid")));
             builder.withValue(QuoteColumns.PERCENT_CHANGE, truncateChange(
                     jsonObject.getString("ChangeinPercent"), true));
@@ -92,6 +109,7 @@ public class Utils {
             }else{
                 builder.withValue(QuoteColumns.ISUP, 1);
             }
+            builder.withValue(QuoteColumns.NAME, jsonObject.getString("Name"));
 
         } catch (JSONException e){
             e.printStackTrace();

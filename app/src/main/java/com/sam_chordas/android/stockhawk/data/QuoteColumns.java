@@ -7,7 +7,9 @@ import net.simonvt.schematic.annotation.PrimaryKey;
 
 /**
  * Created by sam_chordas on 10/5/15.
+ *
  */
+
 public class QuoteColumns {
     @DataType(DataType.Type.INTEGER) @PrimaryKey @AutoIncrement
     public static final String _ID = "_id";
@@ -25,4 +27,6 @@ public class QuoteColumns {
     public static final String ISUP = "is_up";
     @DataType(DataType.Type.INTEGER) @NotNull
     public static final String ISCURRENT = "is_current";
+    @DataType(DataType.Type.TEXT) @NotNull
+    public static final String NAME = "name";
 }
