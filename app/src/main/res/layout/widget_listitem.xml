@@ -9,16 +9,16 @@
     <TextView
         android:id="@+id/widget_symbol"
         style="@style/WidgetStyle"
-        tools:text="GOOG" />
+        tools:text="@string/def_widget_symbol" />
 
     <TextView
         android:id="@+id/widget_price"
         style="@style/WidgetStyle"
-        tools:text="738.45" />
+        tools:text="@string/def_widget_price" />
 
     <TextView
         android:id="@+id/widget_change"
         style="@style/WidgetStyle"
-        tools:text="+2.24" />
+        tools:text="@string/def_widget_change" />
 
 </LinearLayout>

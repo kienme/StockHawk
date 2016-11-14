@@ -95,6 +95,13 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
 
                 if( findFirstVisibleItemPosition() != -1)
                     emptyText.setVisibility(View.GONE);
+
+                /*
+                The following was typed by my dog in a mad rush as he scrambled over my laptop to chase the cat at the gate
+
+                ]\'-op90;'
+
+                */
             }
         });
 
@@ -115,7 +122,7 @@ public class MyStocksActivity extends AppCompatActivity implements LoaderManager
                                             new String[] { input.toString() }, null);
                                     if (c.getCount() != 0) {
                                         Toast toast =
-                                                Toast.makeText(MyStocksActivity.this, "This stock is already saved!",
+                                                Toast.makeText(MyStocksActivity.this, R.string.stock_exists,
                                                         Toast.LENGTH_LONG);
                                         toast.setGravity(Gravity.CENTER, Gravity.CENTER, 0);
                                         toast.show();
