@@ -10,7 +10,8 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:text="@string/no_stock_data"
-        android:id="@+id/empty_screen"/>
+        android:id="@+id/empty_screen"
+        android:contentDescription="@string/no_stock_data"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
@@ -25,6 +26,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
         android:src="@drawable/ic_add_white_24dp"
+        android:contentDescription="@string/fab_content_desc"
         fab:fab_colorNormal="@color/material_blue_500"
         fab:fab_colorPressed="@color/material_blue_600"
         fab:fab_colorRipple="@color/ripple"

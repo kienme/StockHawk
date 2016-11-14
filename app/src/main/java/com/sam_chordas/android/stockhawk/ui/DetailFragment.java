@@ -149,9 +149,19 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         if (data != null && data.moveToFirst()){
             mSymbolView.setText(mSymbol);
-            mPriceView.setText(data.getString(COL_BIDPRICE));
-            mChangeView.setText(data.getString(COL_CHANGE));
-            mNameView.setText(data.getString(COL_NAME));
+            mSymbolView.setContentDescription(mSymbol);
+
+            String price = data.getString(COL_BIDPRICE);
+            mPriceView.setText(price);
+            mPriceView.setContentDescription(price);
+
+            String change = data.getString(COL_CHANGE);
+            mChangeView.setText(change);
+            mChangeView.setContentDescription(change);
+
+            String name = data.getString(COL_NAME);
+            mNameView.setText(name);
+            mNameView.setContentDescription(name);
         }
     }
 
