@@ -60,7 +60,7 @@ public class Utils {
 
     public static String truncateBidPrice(String bidPrice){
 
-        if(bidPrice == null)
+        if(bidPrice == null || bidPrice.equals("null"))
             return null;
 
         bidPrice = String.format("%.2f", Float.parseFloat(bidPrice));
