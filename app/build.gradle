@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
 
 android {
+<<<<<<< HEAD
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
 
@@ -22,10 +23,33 @@ android {
 
 repositories {
     maven { url "https://jitpack.io" }
+=======
+  compileSdkVersion 23
+  buildToolsVersion "23.0.1"
+
+  defaultConfig {
+    applicationId "com.example.sam_chordas.stockhawk"
+    minSdkVersion 15
+    targetSdkVersion 23
+    versionCode 1
+    versionName "1.0"
+  }
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+  }
+}
+
+repositories {
+  maven { url "https://jitpack.io" }
+>>>>>>> 1fcbb789df66de0c7e4d208d7ba462e35cf95106
 }
 
 dependencies {
 
+<<<<<<< HEAD
     compile('com.github.afollestad.material-dialogs:core:0.8.5.7@aar') {
         transitive = true
     }
@@ -41,4 +65,15 @@ dependencies {
     compile 'com.github.PhilJay:MPAndroidChart:v2.2.5'
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'
+=======
+  compile 'com.google.android.gms:play-services-gcm:8.4.0'
+  compile 'com.squareup.okhttp:okhttp:2.5.0'
+  apt 'net.simonvt.schematic:schematic-compiler:0.6.3'
+  compile 'net.simonvt.schematic:schematic:0.6.3'
+  compile 'com.melnykov:floatingactionbutton:1.2.0'
+  compile 'com.android.support:design:23.1.1'
+  compile('com.github.afollestad.material-dialogs:core:0.8.5.7@aar') {
+    transitive = true
+  }
+>>>>>>> 1fcbb789df66de0c7e4d208d7ba462e35cf95106
 }

@@ -1,33 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<<<<<<< HEAD
     package="com.sam_chordas.android.stockhawk">
+=======
+    package="com.sam_chordas.android.stockhawk" >
+>>>>>>> 1fcbb789df66de0c7e4d208d7ba462e35cf95106
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+<<<<<<< HEAD
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+=======
+>>>>>>> 1fcbb789df66de0c7e4d208d7ba462e35cf95106
 
     <permission
         android:name="com.google.android.gcm.demo.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
 
+<<<<<<< HEAD
     <uses-permission android:name="com.google.android.gcm.demo.permission.C2D_MESSAGE" />
+=======
+    <uses-permission
+        android:name="com.google.android.gcm.demo.permission.C2D_MESSAGE" />
+>>>>>>> 1fcbb789df66de0c7e4d208d7ba462e35cf95106
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+<<<<<<< HEAD
         android:theme="@style/AppTheme"
         android:supportsRtl="true">
         <activity
             android:name=".ui.MyStocksActivity"
             android:label="@string/app_name">
+=======
+        android:theme="@style/AppTheme" >
+
+        <activity
+            android:name="com.sam_chordas.android.stockhawk.ui.MyStocksActivity"
+            android:label="@string/app_name" >
+>>>>>>> 1fcbb789df66de0c7e4d208d7ba462e35cf95106
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
 
         <service
             android:name=".service.StockTaskService"
@@ -64,3 +85,20 @@
     </application>
 
 </manifest>
+=======
+        <service android:name="com.sam_chordas.android.stockhawk.service.StockTaskService"
+            android:permission="com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.android.gms.gcm.ACTION_TASK_READY"/>
+            </intent-filter>
+        </service>
+        <service android:name="com.sam_chordas.android.stockhawk.service.StockIntentService" />
+        <provider
+            android:authorities="com.sam_chordas.android.stockhawk.data.QuoteProvider"
+            android:name="com.sam_chordas.android.stockhawk.data.generated.QuoteProvider"
+            android:exported="false"/>
+    </application>
+
+</manifest>
+>>>>>>> 1fcbb789df66de0c7e4d208d7ba462e35cf95106

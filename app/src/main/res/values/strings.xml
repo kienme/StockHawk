@@ -1,4 +1,5 @@
 <resources>
+<<<<<<< HEAD
     <string name="app_name">Stock Hawk</string>
 
     <string name="action_example">Example action</string>
@@ -23,4 +24,17 @@
     <string name="add_widget">Add widget</string>
 
     <string name="fab_content_desc">Add stock</string>
+=======
+  <string name="app_name">Stock Hawk</string>
+
+  <string name="action_example">Example action</string>
+
+  <string name="action_settings">Settings</string>
+  <string name="action_change_units">Change Units</string>
+  <string name="symbol_search">Symbol Search</string>
+  <string name="content_test">Search for a Stock Symbol</string>
+  <string name="input_hint">FB</string>
+  <string name="input_prefill"></string>
+  <string name="network_toast">Uh-oh! This app requires an internet connection</string>
+>>>>>>> 1fcbb789df66de0c7e4d208d7ba462e35cf95106
 </resources>

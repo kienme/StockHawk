@@ -2,6 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MyStocksActivity">
+<<<<<<< HEAD
     <item android:id="@+id/action_change_units"
         android:title="@string/action_change_units"
         android:icon="@drawable/ic_attach_money_white_24dp"
@@ -11,4 +12,15 @@
         android:title="@string/action_settings"
         android:orderInCategory="100"
         app:showAsAction="never" />
+=======
+  <item android:id="@+id/action_change_units"
+      android:title="@string/action_change_units"
+      android:icon="@drawable/ic_attach_money_white_24dp"
+      android:orderInCategory="99"
+      app:showAsAction="always"/>
+  <item android:id="@+id/action_settings"
+      android:title="@string/action_settings"
+      android:orderInCategory="100"
+      app:showAsAction="never" />
+>>>>>>> 1fcbb789df66de0c7e4d208d7ba462e35cf95106
 </menu>

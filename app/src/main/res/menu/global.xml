@@ -1,7 +1,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+<<<<<<< HEAD
     <item android:id="@+id/action_settings"
         android:title="@string/action_settings"
         android:orderInCategory="100"
         app:showAsAction="never" />
+=======
+  <item android:id="@+id/action_settings"
+      android:title="@string/action_settings"
+      android:orderInCategory="100"
+      app:showAsAction="never" />
+>>>>>>> 1fcbb789df66de0c7e4d208d7ba462e35cf95106
 </menu>
